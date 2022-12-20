@@ -1,5 +1,7 @@
 import BlynkLib
-from sense_hat import SenseHat
+import board
+import adafruit_dht
+import logging
 from time import sleep
 # Load .env file values
 config = dotenv_values(".env")
@@ -11,13 +13,17 @@ BLYNK_DEVICE_NAME = config["BLYNK_DEVICE_NAME"]
 # Initialize Blynk
 blynk = BlynkLib.Blynk(config["BLYNK_AUTH_TOKEN"])
 
-# Initialise SenseHAT
-sense = SenseHat()
-sense.clear()
+#Initialize temp and humid sensor
+dhtDevice = adafruit_dht.DHT11(board.D17)
 
 # Event listener
 while True:
-    blynk.run()
-    blynk.virtual_write(1, round(sense.temperature,2))
-    blynk.virtual_write(1, round(sense.humidity,2))
+    try:
+        blynk.run()
+        temperature = dhtDevice.temperature
+        humidity = dhtDevice.humidity
+        blynk.virtual_write(1, temperature)
+        blynk.virtual_write(1, humidity)
+     except RuntimeError as error:    
+         logging.error(error.args[0])
     sleep(15) 

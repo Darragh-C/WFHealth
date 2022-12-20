@@ -1,0 +1,14 @@
+{
+    "appliances": [
+        {
+            "appliance": "heater",
+            "power": "off",
+            "joules": "400"
+        },
+        {
+            "appliance": "dehumidifier",
+            "power": "off",
+            "joules": "600"
+        }
+    ]
+}
