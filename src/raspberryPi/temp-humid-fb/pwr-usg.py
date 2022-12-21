@@ -16,7 +16,7 @@ def check_appliance_pwr_usg(appliance, interval):
                 for key, val in obj.items():
                     if (key == "appliance") and (val == f"{appliance}"):
                         if obj["power"] == "on": 
-                            joules = str(int(obj["joules"])*interval)
+                            joules = obj["joules"]*interval
                             print(f'{appliance} using {joules} J at {currentTime}') 
                             storeFBData.push_db_pwr_usg(appliance, joules, currentTime)
                             print('Data stored in db')
