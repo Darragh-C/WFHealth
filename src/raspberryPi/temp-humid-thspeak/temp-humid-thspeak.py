@@ -4,13 +4,14 @@ import paho.mqtt.client as mqtt
 from urllib.parse import urlparse
 import sys
 import time
-import board
-import adafruit_dht
+from sense_hat import SenseHat
 import logging
 from dotenv import dotenv_values
 
-#Initialize temp and humid sensor
-dhtDevice = adafruit_dht.DHT11(board.D17)
+
+
+# SenseHAT object
+sense = SenseHat()
 
 #load MQTT configuration values from .env file
 config = dotenv_values(".env")
@@ -48,12 +49,31 @@ mqttc.loop_start()
 topic = "channels/"+config["channelId"]+"/publish"
 
 # Publish a message to temp every 15 seconds
+
 while True:
     try:
-        temp= dhtDevice.temperature
-        humidity = dhtDevice.humidity
+        temp = round(sense.get_temperature_from_pressure,2)
+        humidity = round(sense.humidity,2)
         payload=f"field1={temp}&field2={humidity}"
         mqttc.publish(topic, payload)
         time.sleep(int(config["transmissionInterval"]))
     except:
         logging.info('Interrupted')
+
+
+
+#import board
+#import adafruit_dht
+
+#Initialize temp and humid sensor
+#dhtDevice = adafruit_dht.DHT11(board.D17)
+
+#while True:
+#    try:
+#        temp= dhtDevice.temperature
+#        humidity = dhtDevice.humidity
+#        payload=f"field1={temp}&field2={humidity}"
+#        mqttc.publish(topic, payload)
+#        time.sleep(int(config["transmissionInterval"]))
+#    except:
+#        logging.info('Interrupted')
