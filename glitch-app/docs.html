@@ -137,21 +137,10 @@
   <tbody>
       <tr>
         <td>
-          GET
-        </td>
-        <td>
-          appliances/light?power=status
-        </td>
-        <td>
-          Returns the power status of your light: {"power":"on"} or {"power":"off"} 
-        </td>
-      </tr>
-      <tr>
-        <td>
           POST
         </td>
         <td>
-          appliances/light?power=on
+          /moodlight?colour=white
         </td>
         <td>
           Powers on your light
@@ -162,7 +151,7 @@
           POST
         </td>
         <td>
-          appliances/light?power=off
+          /moodlight?colour=none
         </td>
         <td>
           Powers off your light
@@ -173,7 +162,7 @@
           POST
         </td>
         <td>
-          appliances/light?colour={colour}
+          /moodlight?colour={colour}
         </td>
         <td>
           Change the colour of your light
@@ -201,23 +190,12 @@
   </tr>
   </thead>
   <tbody>
-      <tr>
-        <td>
-          GET
-        </td>
-        <td>
-          appliances/energy/heater?power=status
-        </td>
-        <td>
-          Returns the power status of your heater: {"power":"on"} or {"power":"off"}  
-        </td>
-      </tr>
-      <tr>
+    <tr>
         <td>
           POST
         </td>
         <td>
-          appliances/energy/heater?power=on
+          /heater?power=on
         </td>
         <td>
           Starts the power usage meter for your heater
@@ -228,7 +206,7 @@
           POST
         </td>
         <td>
-          appliances/energy/heater?power=off
+          /heater?power=off
         </td>
         <td>
           Stops the power usage meter for your heater
@@ -258,21 +236,10 @@
   <tbody>
       <tr>
         <td>
-          GET
-        </td>
-        <td>
-          appliances/energy/dehumid?power=status
-        </td>
-        <td>
-          Returns the power status of your dehumidifier: {"power":"on"} or {"power":"off"}  
-        </td>
-      </tr>
-      <tr>
-        <td>
           POST
         </td>
         <td>
-          appliances/energy/dehumid?power=on
+          /dehumid?power=on
         </td>
         <td>
           Starts the power usage meter for your dehumidifier
@@ -283,7 +250,7 @@
           POST
         </td>
         <td>
-          appliances/energy/dehumid?power=off
+          /dehumid?power=off
         </td>
         <td>
           Stops the power usage meter for your dehumidifier
