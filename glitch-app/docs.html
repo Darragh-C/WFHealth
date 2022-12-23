@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliance control</title>
+          <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <!-- semantic/fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+    <script type="module" src="firebase.js"></script>
+</head>
+<body>
+   <nav class="ui menu">
+     <header class="ui header item"> WFHealth </header>
+       <div class="menu">
+        <a id="home" class="item" href="/index.html"> Home  </a>
+        <a id="temperature" class="item" href="/temperature.html"> Temperature </a>
+        <a id="humidity" class="item" href="/humid.html"> Humidity </a>
+        <a id="powerusage" class="item" href="/powerusage.html"> Energy Usage </a>
+        <a id="appliacecontrol" class="item" href="/appliancecontrol.html"> Appliace control </a>
+        <a id="moodlighting" class="item" href="/moodlighting.html"> Mood lighting </a>
+        <a id="config" class="item" href="/config.html"> Config </a>
+        <a id="docs" class="item" href="/docs.html"> Docs </a>
+     </div>
+  </nav>
+  <script>
+    $("#{{id}}").addClass("active item");
+  </script>  
+  <section class="ui rasied segment">
+  <h3>Heater triggers</h3>
+  <p>
+    Power on of off your heater
+  </p>
+  <p>
+    Add the following paths to this resource path base: https://maker.ifttt.com/
+  </p>
+  <table class="ui collapsing table">
+  <thead>
+  <tr>
+    <th>Request</th>
+    <th>Path</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          /trigger/HeaterOn/json/with/key/{your-auth-key}
+        </td>
+        <td>
+          Powers on your heater
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          /trigger/HeaterOff/json/with/key/{your-auth-key}
+        </td>
+        <td>
+          Powers off your heater
+        </td>
+      </tr>
+  </tbody>
+</table>
+  <h3>Dehumidifier triggers</h3>
+  <p>
+    Power on of off your dehumidifier
+  </p>
+  <p>
+    Add the following paths to this resource path base: https://maker.ifttt.com/
+  </p>
+  <table class="ui collapsing table">
+  <thead>
+  <tr>
+    <th>Request</th>
+    <th>Path</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          /trigger/DehumidOn/json/with/key/{your-auth-key}
+        </td>
+        <td>
+          Powers on your dehumidifier
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          /trigger/DehumidOff/json/with/key/{your-auth-key}
+        </td>
+        <td>
+          Powers off your dehumidifier
+        </td>
+      </tr>
+  </tbody>
+</table>
+  
+  <h3>Light triggers</h3>
+  <p>
+    Power on of off your light, or change the light colour
+  </p>
+  <p>
+    Add the following paths to your socketxp URL. 
+  </p>
+  <p>
+    <b>Note:</b> This project uses socketxp to expose Flask app APIs with secure public sockets. For more information, see <a href="https://www.socketxp.com/iot/how-to-access-python-flask-app-from-internet/">SocketXP setup</a>.
+  </p>
+  <table class="ui collapsing table">
+  <thead>
+  <tr>
+    <th>Request</th>
+    <th>Path</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          GET
+        </td>
+        <td>
+          appliances/light?power=status
+        </td>
+        <td>
+          Returns the power status of your light: {"power":"on"} or {"power":"off"} 
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          appliances/light?power=on
+        </td>
+        <td>
+          Powers on your light
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          appliances/light?power=off
+        </td>
+        <td>
+          Powers off your light
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          appliances/light?colour={colour}
+        </td>
+        <td>
+          Change the colour of your light
+        </td>
+      </tr>
+  </tbody>
+</table>
+  
+  <h3>Heater energy usage</h3>
+  <p>
+    Get energy usage information for your heater 
+  </p>
+  <p>
+    Add the following paths to your socketxp URL. 
+  </p>
+  <p>
+    <b>Note:</b> This project uses socketxp to expose Flask app APIs with secure public sockets. For more information, see <a href="https://www.socketxp.com/iot/how-to-access-python-flask-app-from-internet/">SocketXP setup</a>.
+  </p>
+  <table class="ui collapsing table">
+  <thead>
+  <tr>
+    <th>Request</th>
+    <th>Path</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          GET
+        </td>
+        <td>
+          appliances/energy/heater?power=status
+        </td>
+        <td>
+          Returns the power status of your heater: {"power":"on"} or {"power":"off"}  
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          appliances/energy/heater?power=on
+        </td>
+        <td>
+          Starts the power usage meter for your heater
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          appliances/energy/heater?power=off
+        </td>
+        <td>
+          Stops the power usage meter for your heater
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+  <h3>Dehumidifier energy usage</h3>
+  <p>
+    Get energy usage information for your dehumidifier 
+  </p>
+  <p>
+    Add the following paths to your socketxp URL. 
+  </p>
+  <p>
+    <b>Note:</b> This project uses socketxp to expose Flask app APIs with secure public sockets. For more information, see <a href="https://www.socketxp.com/iot/how-to-access-python-flask-app-from-internet/">SocketXP setup</a>.
+  </p>
+  <table class="ui collapsing table">
+  <thead>
+  <tr>
+    <th>Request</th>
+    <th>Path</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          GET
+        </td>
+        <td>
+          appliances/energy/dehumid?power=status
+        </td>
+        <td>
+          Returns the power status of your dehumidifier: {"power":"on"} or {"power":"off"}  
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          appliances/energy/dehumid?power=on
+        </td>
+        <td>
+          Starts the power usage meter for your dehumidifier
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POST
+        </td>
+        <td>
+          appliances/energy/dehumid?power=off
+        </td>
+        <td>
+          Stops the power usage meter for your dehumidifier
+        </td>
+      </tr>
+  </tbody>
+</table>
+</section>
+</body>
+</html>

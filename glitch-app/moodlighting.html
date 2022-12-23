@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature</title>
+          <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <!-- semantic/fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+    <script type="module" src="firebase.js"></script>
+</head>
+<body>
+   <nav class="ui menu">
+     <header class="ui header item"> WFHealth </header>
+       <div class="menu">
+        <a id="home" class="item" href="/index.html"> Home  </a>
+        <a id="temperature" class="item" href="/temperature.html"> Temperature </a>
+        <a id="humidity" class="item" href="/humid.html"> Humidity </a>
+        <a id="powerusage" class="item" href="/powerusage.html"> Energy Usage </a>
+        <a id="appliacecontrol" class="item" href="/appliancecontrol.html"> Appliace control </a>
+        <a id="moodlighting" class="item" href="/moodlighting.html"> Mood lighting </a>
+        <a id="docs" class="item" href="/docs.html"> Docs </a>
+     </div>
+  </nav>
+   <script>
+     $("#{{id}}").addClass("active item");
+   </script>
+   <section class="ui rasied segment">
+    <h1 class="ui headder">
+      Mood lighting
+    </h1>
+    <p>
+      Choose lighting to fit your desired mood
+    </p>
+
+    <button class="big ui green button" id="greenLedOnBtn">Innovation</button>
+      <script>
+        const greenLightBtn = document.getElementById("greenLedOnBtn");
+        greenLightBtn.addEventListener("click", function(e) {
+          console.log("the button was clicked");
+          fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=green', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+        })
+      </script>
+    <button class="big ui red button" id="redLedOnBtn">Energy</button>
+     <script>
+      const redLightBtn = document.getElementById("redLedOnBtn");
+      redLightBtn.addEventListener("click", function(e) {
+        console.log("the button was clicked");
+        fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=red', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+      })
+    </script>
+    <button class="big ui blue button" id="blueLedOnBtn">Focus</button>
+     <script>
+      const blueLightBtn = document.getElementById("blueLedOnBtn");
+      blueLightBtn.addEventListener("click", function(e) {
+        console.log("the button was clicked");
+        fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=blue', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+      })
+    </script>
+    <button class="big ui yellow button" id="yellowLedOnBtn">Yellow light</button>
+      <script>
+        const yellowLightBtn = document.getElementById("yellowLedOnBtn");
+        yellowLightBtn.addEventListener("click", function(e) {
+          console.log("the button was clicked");
+          fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=yellow', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+        })
+      </script>
+    <button class="big ui orange button" id="orangeLedOnBtn">Orange light</button>
+      <script>
+        const orangeLightBtn = document.getElementById("orangeLedOnBtn");
+        orangeLightBtn.addEventListener("click", function(e) {
+          console.log("the button was clicked");
+          fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=orange', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+        })
+      </script>
+    <button class="big ui purple button" id="purpleLedOnBtn">Purple light</button>
+      <script>
+        const purpleLightBtn = document.getElementById("purpleLedOnBtn");
+        purpleLightBtn.addEventListener("click", function(e) {
+          console.log("the button was clicked");
+          fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=purple', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+        })
+      </script>
+  </section>
+</body>
+</html>

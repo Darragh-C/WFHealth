@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature</title>
+          <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <!-- semantic/fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+    <script type="module" src="firebase.js"></script>
+</head>
+<body>
+   <nav class="ui menu">
+     <header class="ui header item"> WFHealth </header>
+       <div class="menu">
+        <a id="home" class="item" href="/index.html"> Home  </a>
+        <a id="temperature" class="item" href="/temperature.html"> Temperature </a>
+        <a id="humidity" class="item" href="/humid.html"> Humidity </a>
+        <a id="powerusage" class="item" href="/powerusage.html"> Energy Usage </a>
+        <a id="appliacecontrol" class="item" href="/appliancecontrol.html"> Appliace control </a>
+        <a id="moodlighting" class="item" href="/moodlighting.html"> Mood lighting </a>
+        <a id="docs" class="item" href="/docs.html"> Docs </a>
+     </div>
+  </nav>
+   <script>
+     $("#{{id}}").addClass("active item");
+   </script>
+   <section class="ui rasied segment">
+    <h1 class="ui headder">
+      Temperature
+    </h1>
+    <p>
+      View current temperature stats and trends
+    </p>
+    </section>
+    <section class="ui rasied segment">
+      <h3>Temperature readings</h3>
+      <div class="ui cards">
+        <div class="card">
+          <div class="content">
+            <div class="header">
+              Current
+            </div>
+ 
+            <div class="description">
+              <h1><span id="temp"></span><br></h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div class="header">
+              Average
+            </div>
+  
+            <div class="description">
+              <h1><span id="avgTemptoday"></span> <br></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ui rasied segment">
+      <h3>Temperature graph</h3>
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1976859/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+
+    </section>
+
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliance control</title>
+          <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <!-- semantic/fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+    <script type="module" src="firebase.js"></script>
+</head>
+<body>
+   <nav class="ui menu">
+     <header class="ui header item"> WFHealth </header>
+       <div class="menu">
+        <a id="home" class="item" href="/index.html"> Home  </a>
+        <a id="temperature" class="item" href="/temperature.html"> Temperature </a>
+        <a id="humidity" class="item" href="/humid.html"> Humidity </a>
+        <a id="powerusage" class="item" href="/powerusage.html"> Energy Usage </a>
+        <a id="appliacecontrol" class="item" href="/appliancecontrol.html"> Appliace control </a>
+        <a id="moodlighting" class="item" href="/moodlighting.html"> Mood lighting </a>
+        <a id="docs" class="item" href="/docs.html"> Docs </a>
+     </div>
+  </nav>
+  <script>
+    $("#{{id}}").addClass("active item");
+  </script>  
+  <section class="ui rasied segment">
+    <h1 class="ui headder">
+      Appliance control
+    </h1>
+    <p>
+      Manually control your heater, dehumidifier, and light
+    </p>
+
+    <div class="ui link cards">
+      <div class="card">
+        <div class="ui small centered image">
+          <img src="https://cdn.glitch.global/16f041fa-47fe-48f1-8d04-085113052b3b/heater.png?v=1671732284755">
+        </div>
+        <div class="content">
+          <div class="header">Heater</div>
+          <div class="description">
+            Turn your heater on or off
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <div id="heaterOnBtn" class="ui basic green button">On</div>
+                <script>
+                  const heaterOnBtn = document.getElementById("heaterOnBtn");
+                  heaterOnBtn.addEventListener("click", function(e) {
+                    console.log("the button was clicked");
+                    fetch('https://maker.ifttt.com/trigger/HeaterOn/json/with/key/cphlAau61l3bwcQDY6Xpw9', { method: 'POST'}).then(results => results.text()).then(data => console.log(data));
+                  })
+                </script>
+            <div id="heaterOffBtn" class="ui basic red button">Off</div>
+              <script>
+                const heaterOffBtn = document.getElementById("heaterOffBtn");
+                heaterOffBtn.addEventListener("click", function(e) {
+                  console.log("the button was clicked");
+                  fetch('https://maker.ifttt.com/trigger/HeaterOff/json/with/key/cphlAau61l3bwcQDY6Xpw9', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+                })
+              </script>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ui small centered image">
+          <img src="https://cdn.glitch.global/16f041fa-47fe-48f1-8d04-085113052b3b/dehumid.png?v=1671730783878">
+        </div>
+        <div class="content">
+          <div class="header">Dehumidifier</div>
+          <div class="description">
+            Turn your dehumidifier on or off
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <div class="ui basic green button">On</div>
+              <script>
+                const dehumidOnBtn = document.getElementById("dehumidOnBtn");
+                dehumidOnBtn.addEventListener("click", function(e) {
+                  console.log("the button was clicked");
+                  fetch('https://maker.ifttt.com/trigger/DehumidOn/json/with/key/cphlAau61l3bwcQDY6Xpw9', { method: 'POST'}).then(results => results.text()).then(data => console.log(data));
+                })
+              </script>
+            <div class="ui basic red button">Off</div>
+              <script>
+                const dehumidOffBtn = document.getElementById("dehumidOffBtn");
+                dehumidOffBtn.addEventListener("click", function(e) {
+                  console.log("the button was clicked");
+                  fetch('https://maker.ifttt.com/trigger/DehumidOff/json/with/key/cphlAau61l3bwcQDY6Xpw9', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+                })
+              </script>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ui medium centered image">
+          <img src="https://cdn.glitch.global/16f041fa-47fe-48f1-8d04-085113052b3b/bulb.png?v=1671732719832">
+        </div>
+        <div class="content">
+          <div class="header">Light</div>
+
+          <div class="description">
+            Turn your light on or off
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <div id="lightOnBtn" class="ui basic green button">On</div>
+              <script>
+                const lightOnBtn = document.getElementById("lightOnBtn");
+                lightOnBtn.addEventListener("click", function(e) {
+                  console.log("the button was clicked");
+                  fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=white', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+                })
+              </script>
+            <div id="lightOffBtn" class="ui basic red button">Off</div>
+              <script>
+                const lightOffBtn = document.getElementById("lightOffBtn");
+                lightOffBtn.addEventListener("click", function(e) {
+                  console.log("the button was clicked");
+                  fetch('https://darraghc23-2733eo988fq6l3n1.socketxp.com/moodlight?colour=none', { method: 'POST'}).then(results => results.json()).then(data => console.log(data));
+                })
+              </script>
+          </div>
+        </div>
+      </div>
+    </div>
+ </section> 
+  
+  
+  
+  
+  </body>
+</html>
