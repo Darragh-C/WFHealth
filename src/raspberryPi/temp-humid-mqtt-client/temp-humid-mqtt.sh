@@ -1,1 +1,0 @@
-python temp-humid-mqtt-client.py
