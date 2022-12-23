@@ -9,8 +9,6 @@ import board
 import neopixel
 import subprocess
 
-led = LED(18)
-
 
 #create Flask app instance and apply CORS
 app = Flask(__name__)
@@ -20,10 +18,10 @@ CORS(app)
 def light_post():
     state=request.args.get('state')
     print (state)
-    if (power=="on"):
+    if (state=="on"):
         led.on()
         return '{"state":"on"}'
-    elif (power=="off"):
+    else: 
         led.off()
         return '{"state":"off"}'
 
@@ -31,9 +29,8 @@ def run_mood_script(colour):
     subprocess.run(["sudo", "python", "mood-led.py", colour])
         
 
-@app.route('/light/colour',methods=['POST'])
+@app.route('/moodlight',methods=['POST'])
 def light_mood_post():
-    #pixels1 = neopixel.NeoPixel(board.D10, 150, brightness=1)
     colour=request.args.get('colour')
     print(colour)
     run_mood_script(colour)
